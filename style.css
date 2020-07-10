@@ -1,0 +1,117 @@
+/* bootstrap overwrites */
+@media (min-width: 1200px){
+    .container{
+        max-width: 1500px;
+    }
+}
+
+
+.bg-primary{
+    background: linear-gradient(90deg, rgba(239,205,117,1) 0%, rgba(194,142,69,1) 100%);
+    color: black;
+}
+.btn.btn-primary{
+    background: rgb(239,205,117);
+    background: linear-gradient(90deg, rgba(239,205,117,1) 0%, rgba(194,142,69,1) 100%);
+
+    border-color: rgba(194,142,69,1);
+
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    border-radius: 0;
+}
+
+
+
+.content-block:not(:last-of-type){
+    margin-bottom: 8rem;
+}
+
+.embed-responsive-hero::before {
+    padding-top: 100%;
+}
+@media all and (min-width: 768px){
+    .embed-responsive-hero::before {
+        padding-top: 28.125%;
+    }
+}
+
+
+
+
+
+
+
+@media all and (min-width: 768px){
+    .nav-link__styling{
+        position: relative;
+    }
+
+    .nav-tabs .nav-item:nth-child(1) .nav-link__styling{
+        z-index: 3;
+    }
+    .nav-tabs .nav-item:nth-child(2) .nav-link__styling{
+        z-index: 2;
+    }
+    .nav-tabs .nav-item:nth-child(3) .nav-link__styling{
+        z-index: 1;
+    }
+
+
+
+    .nav-link__styling:before, .nav-link__styling:after {
+        display: block;
+        content: " ";
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 44px;
+        background-color: #FFF;
+        transition: all 250ms ease;
+    }
+
+    .nav-link__styling:after{
+        left: -24px;
+        transform: skew(-30deg, 0deg);
+        box-shadow: rgba(0,0,0,.1) -3px 2px 5px, inset rgba(255,255,255,.09) 1px 0;
+    }
+
+    .nav-link__styling:before{
+        right: -24px;
+        transform: skew(30deg, 0deg);
+        box-shadow: rgba(0,0,0,.1) 3px 2px 5px, inset rgba(255,255,255,.09) -1px 0;
+    }
+}
+
+.nav-tabs .nav-item .nav-link__styling,
+.nav-tabs .nav-item .nav-link__styling:before,
+.nav-tabs .nav-item .nav-link__styling:after{
+    background-color: white;
+}
+.nav-tabs .nav-item .nav-link__styling.active{
+    z-index: 10;
+    background-color: #343a40;
+    color: white;
+}
+.nav-tabs .nav-item .nav-link__styling.active:before,
+.nav-tabs .nav-item .nav-link__styling.active:after{
+    background-color: #343a40;
+}
+
+.border-bottom {
+    border-width: 5px !important;
+}
+
+.sticky-button{
+    display: none;
+}
+@media all and (min-width: 768px){
+    .sticky-button{
+        position: fixed;
+        bottom: 3rem;
+        right: 0;
+        display: block;
+    }
+}
