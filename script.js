@@ -20,8 +20,9 @@ $('.js-fading').on('click', function showElement() {
 let $blocks = $('.js-fading');
 scrollContent($blocks);
 document.addEventListener('scroll', function (event) {
+    zoomImage();
     scrollContent($blocks);
-}, true /*Ca    pture event*/);
+}, true /*Capture event*/);
 
 function scrollContent($blocks) {
     let screenBottom = $(window).scrollTop() + $(window).height();
@@ -37,3 +38,59 @@ function scrollContent($blocks) {
         }
     });
 }
+
+let $zoomImages = $('.js-scaling-image');
+function zoomImage() {
+
+    let screenBottom = $(window).scrollTop() + $(window).height(),
+        screenTop    = $(window).scrollTop();
+    $zoomImages.each((index) => {
+        if (screenBottom >= $($zoomImages[index]).offset().top && screenTop < $($zoomImages[index]).offset().top + $($zoomImages[index]).height()) {
+            console.log('Nau!')
+            $($zoomImages[index]).addClass('active');
+        }
+        else {
+            console.log('Nau not!')
+            $($zoomImages[index]).removeClass('active');
+        }
+    });
+}
+
+document.addEventListener("scroll", function toggleNavBG (e) {
+    let nav = document.querySelector('.js-nav');
+    if(window.scrollY > 600){
+        nav.classList.add('navbar--colored')
+    }else{
+        nav.classList.remove('navbar--colored')
+    }
+})
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+    if ("IntersectionObserver" in window) {
+        var lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(video) {
+                if (video.isIntersecting) {
+                    for (var source in video.target.children) {
+                        var videoSource = video.target.children[source];
+                        if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                            videoSource.src = videoSource.dataset.src;
+                        }
+                    }
+
+                    video.target.load();
+                    video.target.classList.remove("lazy");
+                    lazyVideoObserver.unobserve(video.target);
+
+                    console.log('remove lazy loading')
+                }
+            });
+        });
+
+        lazyVideos.forEach(function(lazyVideo) {
+            lazyVideoObserver.observe(lazyVideo);
+        });
+    }
+});
